@@ -32,7 +32,7 @@ ifneq ($(git_version),$(project_version))
 	exit 1
 endif
 
-publish_pypi: lint check_semver build_pypi
+publish_pypi: lint test check_semver build_pypi
 	twine upload \
 		-r $(pypi_url) \
 		dist/$(pypi_package_name)-$(project_version)-py3-none-any.whl
