@@ -1,7 +1,7 @@
 import json
 import requests
-from endpoints.exceptions import HttpMethodIsNotSupported
-from endpoints.methods import (
+from endpoints.lib.exceptions import HttpMethodIsNotSupported
+from endpoints.lib.methods import (
         GET,
         POST,
         PUT,
@@ -52,7 +52,7 @@ class Endpoint(object):
 
     def request(self, method, headers=None, query_params=None, data=None,
                 json_data=None):
-        if method not in self.methods:
+        if self.methods and method not in self.methods:
             raise HttpMethodIsNotSupported(method, self.methods)
 
         headers = self.get_headers(headers)
