@@ -2,7 +2,7 @@
 
 ## Install
 
-`pip install endpoints_mapper`
+`pip install endpoints-mapper`
 
 ## Usage
 
