@@ -1,5 +1,119 @@
 # py-endpoints
 
+## Install
+
+`pip install endpoints_mapper`
+
+## Usage
+
+### Lets Map Urban Dictionary API
+
+First step is creating a class responsible to handle how the credentials need
+to injected on the HTTP requests
+
+```python
+from endpoints.lib import Credential
+
+
+class ApiKeyCredential(Credential):
+    headers = {
+        "x-rapidapi-host": "mashape-community-urban-dictionary.p.rapidapi.com",
+        "x-rapidapi-key": "SIGN-UP-FOR-KEY",
+        "useQueryString": "true",
+        }
+```
+
+Now lets map the class that will hold the shared domain and other data
+(headers and query params) shared between endpoints
+
+```python
+from endpoints.lib import Endpoint
+
+
+class CommunityUrbanDict(Endpoint):
+    domain = "https://mashape-community-urban-dictionary.p.rapidapi.com"
+
+
+class DefineEndpoint(CommunityUrbanDict):
+    path = "/define"
+```
+
+For the sake of simplicity we will put all this together:
+
+
+```python
+from endpoints.lib import Credential
+from endpoints.lib import Endpoint
+
+
+class ApiKeyCredential(Credential):
+    headers = {
+        "x-rapidapi-host": "mashape-community-urban-dictionary.p.rapidapi.com",
+        "x-rapidapi-key": "SIGN-UP-FOR-KEY",
+        "useQueryString": "true",
+        }
+
+
+class CommunityUrbanDict(Endpoint):
+    domain = "https://mashape-community-urban-dictionary.p.rapidapi.com"
+
+
+class DefineEndpoint(CommunityUrbanDict):
+    path = "/define"
+```
+
+Now we are going to use it to find the definition of _"wat"_:
+
+```python
+cred = ApiKeyCredential()
+endpoint = DefineEndpoint(cred)
+resp = endpoint.get(query_params={
+    "term": "wat",
+    })
+
+# resp here is a Response object from requests module/library
+print(resp.status_code)
+print(resp.content)
+```
+
+Wrapping it all up
+
+```python
+from endpoints.lib import Credential
+from endpoints.lib import Endpoint
+
+
+class ApiKeyCredential(Credential):
+    headers = {
+        "x-rapidapi-host": "mashape-community-urban-dictionary.p.rapidapi.com",
+        "x-rapidapi-key": "SIGN-UP-FOR-KEY",
+        "useQueryString": "true",
+        }
+
+
+class CommunityUrbanDict(Endpoint):
+    domain = "https://mashape-community-urban-dictionary.p.rapidapi.com"
+
+
+class DefineEndpoint(CommunityUrbanDict):
+    path = "/define"
+
+
+if __name__ == "__main__":
+    cred = ApiKeyCredential()
+    endpoint = DefineEndpoint(cred)
+    resp = endpoint.get(query_params={
+        "term": "wat",
+        })
+
+    # resp here is a Response object from requests module/library
+    print(resp.status_code)
+    print(resp.content)
+```
+
+We added a sample code for this scenario over the `examples/` folder
+
+
 ## License
 
 MIT License
