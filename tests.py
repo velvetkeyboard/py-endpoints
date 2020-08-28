@@ -1,8 +1,8 @@
 import unittest
 from endpoints.lib import Endpoint
-from endpoints.credentials import Credential
-from endpoints.methods import GET
-from endpoints.exceptions import HttpMethodIsNotSupported
+from endpoints.lib import Credential
+from endpoints.lib import GET
+from endpoints.lib import HttpMethodIsNotSupported
 
 
 class EndpointTestCase(unittest.TestCase):
