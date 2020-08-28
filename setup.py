@@ -10,6 +10,10 @@ from endpoints import (
     )
 
 
+with open('README.md') as f:
+    __long_description__ = f.read()
+
+
 setup(
     name=__app_name__,
     version=__version__,
