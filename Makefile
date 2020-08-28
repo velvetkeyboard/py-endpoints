@@ -3,15 +3,16 @@ venv=env
 python=$(venv)/bin/python
 linter=$(venv)/bin/flake8
 pypi_mode=test
+pypi_package_name=$(shell $(python) -c "from $(project) import __app_name__; print(__app_name__)")
 
 project_version=$(shell $(python) -c "from $(project) import __version__; print(__version__)")
 git_version=$(shell git describe --tags)
 
 ifeq ($(pypi_mode),test)
-	pypi_url=https://test.pypi.org/legacy/
+	pypi_url=pypi_test
 endif
 ifeq ($(pypi_mode),production)
-	pypi_url=https://upload.pypi.org/legacy/
+	pypi_url=pypi
 endif
 
 
@@ -33,5 +34,5 @@ endif
 
 publish_pypi: lint check_semver build_pypi
 	twine upload \
-		--repository-url $(pypi_url) \
-		dist/$(project)-$(project_version)-py3-none-any.whl
+		-r $(pypi_url) \
+		dist/$(pypi_package_name)-$(project_version)-py3-none-any.whl
