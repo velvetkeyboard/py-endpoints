@@ -30,7 +30,8 @@ setup(
     packages=find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Environment :: X11 Applications :: GTK',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
@@ -38,5 +39,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Software Development :: Libraries',
     ],
 )
