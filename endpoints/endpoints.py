@@ -23,16 +23,17 @@ class Endpoint(object):
         self.path_params = kwargs or {}
 
     def get_path(self):
-        self.path = self.path.format(**self.path_params)
+        return self.path.format(**self.path_params)
 
     def get_url(self):
-        if self.domain[-1] == '/' and self.path[0] == '/':
+        path = self.get_path()
+        if self.domain[-1] == '/' and path[0] == '/':
             domain = self.domain[:-1]
-        elif self.domain[-1] != '/' and self.path[0] != '/':
+        elif self.domain[-1] != '/' and path[0] != '/':
             domain = self.domain + '/'
         else:
             domain = self.domain
-        return f'{domain}{self.path}'
+        return f'{domain}{path}'
 
     def get_headers(self, extra=None):
         ret = {}
