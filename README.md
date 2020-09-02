@@ -12,7 +12,7 @@ First step is creating a class responsible to handle how the credentials need
 to injected on the HTTP requests
 
 ```python
-from endpoints.lib import Credential
+from endpoints import Credential
 
 
 class ApiKeyCredential(Credential):
@@ -27,7 +27,7 @@ Now lets map the class that will hold the shared domain and other data
 (headers and query params) shared between endpoints
 
 ```python
-from endpoints.lib import Endpoint
+from endpoints import Endpoint
 
 
 class CommunityUrbanDict(Endpoint):
@@ -42,8 +42,8 @@ For the sake of simplicity we will put all this together:
 
 
 ```python
-from endpoints.lib import Credential
-from endpoints.lib import Endpoint
+from endpoints import Credential
+from endpoints import Endpoint
 
 
 class ApiKeyCredential(Credential):
@@ -79,8 +79,8 @@ print(resp.content)
 Wrapping it all up
 
 ```python
-from endpoints.lib import Credential
-from endpoints.lib import Endpoint
+from endpoints import Credential
+from endpoints import Endpoint
 
 
 class ApiKeyCredential(Credential):

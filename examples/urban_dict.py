@@ -1,6 +1,6 @@
 import sys
-from endpoints.lib import Credential
-from endpoints.lib import Endpoint
+from endpoints import Credential
+from endpoints import Endpoint
 
 
 class ApiKeyCredential(Credential):
