@@ -1,7 +1,7 @@
 import json
 import requests
-from endpoints.lib.exceptions import HttpMethodIsNotSupported
-from endpoints.lib.methods import (
+from endpoints.exceptions import HttpMethodIsNotSupported
+from endpoints.methods import (
         GET,
         POST,
         PUT,
