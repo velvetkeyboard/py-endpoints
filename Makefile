@@ -23,7 +23,7 @@ lint:
 	$(linter) endpoints/
 	$(linter) tests.py
 
-build_pypi: lint
+build_pypi: lint test
 	$(python) setup.py bdist_wheel
 
 check_semver:
