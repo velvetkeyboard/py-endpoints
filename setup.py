@@ -6,7 +6,6 @@ from endpoints import (
         __license__,
         __app_name__,
         __description__,
-        __long_description__,
     )
 
 
