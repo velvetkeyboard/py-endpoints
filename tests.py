@@ -1,8 +1,8 @@
 import unittest
-from endpoints.lib import Endpoint
-from endpoints.lib import Credential
-from endpoints.lib import GET
-from endpoints.lib import HttpMethodIsNotSupported
+from endpoints import Endpoint
+from endpoints import Credential
+from endpoints import GET
+from endpoints import HttpMethodIsNotSupported
 
 
 class EndpointTestCase(unittest.TestCase):
@@ -36,6 +36,16 @@ class EndpointTestCase(unittest.TestCase):
 
         bar = FooBarEndpoint()
         self.assertEqual(bar.get_url(), 'http://foo/bar')
+
+    def test_get_url_variable(self):
+        class FooEndpoint(Endpoint):
+            domain = 'http://foo'
+
+        class FooBarEndpoint(FooEndpoint):
+            path = 'bar/{bar_id}'
+
+        bar = FooBarEndpoint(bar_id=1)
+        self.assertEqual(bar.get_url(), 'http://foo/bar/1')
 
     def test_query_params_merging(self):
         class FooEndpoint(Endpoint):
